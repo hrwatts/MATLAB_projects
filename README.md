@@ -15,3 +15,6 @@ The bifurcation project shows the limitations
 The SIR-COVID project allows one to fit a simple 
   one-peak infection curve to the COVID pandemic data 
     and predict a herd immunity.
+
+The gradient_descent project contains an algorithm for 
+  conjugate gradient descent method in MATLAB.
