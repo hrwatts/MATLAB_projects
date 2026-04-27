@@ -80,11 +80,17 @@ function [x_star z_star lam_star] = primal_dual(A,b,c,lam)
     for(iter=1:1000)
 
     % solve ARP
-    r_ARP(P)
+    r_ARP_P = r_ARP(1:n);
+    r_ARP_P(~P) = NaN;
+    r_ARP_P
     
-    condition_3 = all(r_ARP(P)>=0)
+    condition_3 = all(r_ARP_P(P) >= 0)
     
     P_1 = P
+    
+    if ~condition_3
+        [~, q] = min(r_ARP_P);
+    end
     
     if isnan(std_ratio)
         'Initial dual solution is infeasible.'
@@ -123,11 +129,11 @@ function [x_star z_star lam_star] = primal_dual(A,b,c,lam)
             
         P_1(p)=0
         
-        r_ARP_3 = r_ARP;
+        r_ARP_3 = r_ARP(1:n);
         
         r_ARP_3(~P_1)=NaN;
         
-        [~, q] = min(r_ARP_3(1:n))
+        [~, q] = min(r_ARP_3)
         
         % all r>0?
         condition_3 = all(r_ARP_3(P_1)>=0)
