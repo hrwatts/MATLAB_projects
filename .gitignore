@@ -1,0 +1,35 @@
+# MATLAB editor / autosave
+*.asv
+*.m~
+*.mlx.autosave
+*.autosave
+
+# MATLAB generated folders
+slprj/
+codegen/
+resources/project/
+
+# Compiled or generated MATLAB artifacts
+*.mex*
+*.p
+*.fig
+
+# Generated outputs
+results/
+output/
+reports/
+figures/generated/
+docs/build/
+
+# Data that should not be public
+data/raw/
+data/private/
+
+# Temporary caches
+tmp/
+temp/
+.cache/
+
+# OS noise
+.DS_Store
+Thumbs.db
