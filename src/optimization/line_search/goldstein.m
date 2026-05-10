@@ -14,7 +14,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function alpha = goldstein(f,x0,d,epsilon,eta)
     
-    % epsilon = 1/2
+    % epsilon = 1/3
     if nargin < 4 || isempty(epsilon)
         epsilon = 1/3;
     end
@@ -59,6 +59,10 @@ function alpha = goldstein(f,x0,d,epsilon,eta)
         if ~condition_met
             
             alpha = alpha/3;
+
+            % objective function value at updated alpha
+            x_next = x0 + alpha*d;
+            phi = evaluate_symbolic_at_point(f, vars, x_next);
             
             % Armijo's rule
             armijos_rule = double(phi_0 + epsilon*phi_prime_0*alpha);
@@ -69,6 +73,10 @@ function alpha = goldstein(f,x0,d,epsilon,eta)
         else 
             
             alpha = alpha*2;
+
+            % objective function value at updated alpha
+            x_next = x0 + alpha*d;
+            phi = evaluate_symbolic_at_point(f, vars, x_next);
             
             % Goldstein's condition
             

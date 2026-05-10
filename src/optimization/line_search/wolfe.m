@@ -59,6 +59,10 @@ function alpha = wolfe(f,x0,d,epsilon,eta)
         if ~condition_met
             
             alpha = alpha/(3*eta);
+
+            % objective function value at updated alpha
+            x_next = x0 + alpha*d;
+            phi = evaluate_symbolic_at_point(f, vars, x_next);
             
             % Armijo's rule
             armijos_rule = double(phi_0 + epsilon*phi_prime_0*alpha);
@@ -69,6 +73,9 @@ function alpha = wolfe(f,x0,d,epsilon,eta)
         else 
             
             alpha = alpha*2*eta;
+
+            % new location at updated alpha
+            x_next = x0 + alpha*d;
             
             % Wolfe condition
             f_prime = evaluate_symbolic_at_point(grad, vars, x_next);
